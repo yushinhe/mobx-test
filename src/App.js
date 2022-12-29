@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './stylesheet/app.scss'
+import {observer} from 'mobx-react-lite'
+import React from 'react';
+import useStore from './store'
 function App() {
+  const {count} = useStore()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+      <div className='container'>
+        計數器案例
+        <div className='d-flex align-items-center'>
+          <button className='btn btn-primary me-3' onClick={count.minusCount}> - 1</button>
+          {count.count}
+          <button className='btn btn-primary ms-3' onClick={count.addCount}> + 1</button>
+        </div>
+      </div>
+   </>
   );
 }
 
-export default App;
+export default observer(App) ;
